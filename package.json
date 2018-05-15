@@ -1,0 +1,23 @@
+{
+  "name": "renting-tool-noe",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hua1995116/renting-tool-noe.git"
+  },
+  "author": "huayifeng <qiufenghyf@163.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hua1995116/renting-tool-noe/issues"
+  },
+  "homepage": "https://github.com/hua1995116/renting-tool-noe#readme",
+  "dependencies": {
+    "express": "^4.16.3",
+    "multer": "^1.3.0"
+  }
+}
