@@ -23,7 +23,7 @@
 
         // Ajax
         var request = new XMLHttpRequest();
-        request.open("POST", "http://localhost:5000/upload");
+        request.open("POST", "http://localhost:7788/upload");
         request.send(fd);
         request.onreadystatechange = function(){
             if(request.readyState === 4 & request.status === 200){
