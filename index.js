@@ -1,8 +1,13 @@
-var express = require('express')
-var fs = require('fs');
-var multer  = require('multer');
-var app = express()
-var router = express.Router();
+const express = require('express');
+const request = require('request');
+const fs = require('fs');
+const multer  = require('multer');
+const app = express()
+const router = express.Router();
+const wxConfig = {
+    AppID: 'wx9b0e913c3e69d62e',
+    Secret: 'a5381fa30dacec4049dae9c8e61aaf07'
+}
 
 router.get('/', function (req, res, next) {
     req.url = './index.html';
@@ -19,7 +24,7 @@ app.all('*', function (req, res, next) {
     next();
 });
 
-var storage = multer.diskStorage({
+const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         // 接收到文件后输出的保存路径（若不存在则需要创建）
         cb(null, 'upload/');    
@@ -31,7 +36,7 @@ var storage = multer.diskStorage({
 });
 
 // 创建文件夹
-var createFolder = function(folder){
+const createFolder = function(folder){
     try{
         // 测试 path 指定的文件或目录的用户权限,我们用来检测文件是否存在
         // 如果文件路径不存在将会抛出错误"no such file or directory"
@@ -42,15 +47,15 @@ var createFolder = function(folder){
     }  
 };
 
-var uploadFolder = './upload/';
+const uploadFolder = './upload/';
 createFolder(uploadFolder);
 
 // 创建 multer 对象
-var upload = multer({ storage: storage });
+const upload = multer({ storage: storage });
 
 /* POST upload listing. */
 app.post('/upload', upload.single('file'), function(req, res, next) {
-    var file = req.file;
+    const file = req.file;
     console.log('文件类型：%s', file.mimetype);
     console.log('原始文件名：%s', file.originalname);
     console.log('文件大小：%s', file.size);
@@ -58,6 +63,30 @@ app.post('/upload', upload.single('file'), function(req, res, next) {
     // 接收文件成功后返回数据给前端
     res.json({res_code: '0'});
 });
+
+app.get('/list/house', (req, res) => {
+    
+});
+
+
+app.get('/user/login', (req, res) => {
+    const param = req.query;
+    console.log(param);
+    const { code } = param;
+    const url = 'https://api.weixin.qq.com/sns/jscode2session?appid=' + wxConfig.AppID + '&secret=' + wxConfig.Secret + '&js_code=' + code + '&grant_type=authorization_code';
+    request(url, function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            const jsBody = JSON.parse(body);
+            jsBody.status = 100;
+            jsBody.msg = '操作成功';
+            console.log(JSON.stringify(jsBody));
+            // res.end(JSON.stringify(jsBody));
+        }
+    })
+    res.json({
+        code: 200
+    })
+})
 
 app.use(express.static('./'));
 const server = app.listen(7788)
