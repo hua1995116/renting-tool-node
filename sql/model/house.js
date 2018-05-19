@@ -1,4 +1,5 @@
 const sequelize = require('../db');
+const Sequelize = require('Sequelize');
 const House = sequelize.define('house', {
     openid: {
       type: Sequelize.STRING,
@@ -13,6 +14,9 @@ const House = sequelize.define('house', {
       type: Sequelize.STRING
     },
     imgList: {
+      type: Sequelize.STRING
+    },
+    logo: {
       type: Sequelize.STRING
     },
     houseId: {
