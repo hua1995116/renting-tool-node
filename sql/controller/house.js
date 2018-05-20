@@ -8,14 +8,14 @@ const house = House.sync({
     force: false
 });
 
-function addHouse(openid, location, iphone, type,logo, imgList) {
+function addHouse(openid, location, iphone, date, type, image) {
     return House.create({
-        openid, 
-        location, 
-        iphone, 
-        type, 
-        logo,
-        imgList,
+        openid,
+        location,
+        iphone,
+        date,
+        type,
+        image,
         houseId: uuidv4()
     });
 };
@@ -27,6 +27,14 @@ function findHouse(houseId) {
         }
     });
 };
+
+function deleteHouse(houseId) {
+    return House.destroy({
+        where: {
+            houseId,
+        }
+    });
+}
 
 function findAllHouse(openid) {
     return House.findAll({
@@ -42,5 +50,6 @@ function findAllHouse(openid) {
 module.exports = {
     addHouse,
     findHouse,
-    findAllHouse
+    findAllHouse,
+    deleteHouse
 }

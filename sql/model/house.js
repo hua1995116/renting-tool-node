@@ -10,13 +10,13 @@ const House = sequelize.define('house', {
     iphone: {
       type: Sequelize.STRING
     },
+    date: {
+      type: Sequelize.DATE
+    },
     type: {
       type: Sequelize.STRING
     },
-    imgList: {
-      type: Sequelize.STRING
-    },
-    logo: {
+    image: {
       type: Sequelize.STRING
     },
     houseId: {
