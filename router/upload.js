@@ -31,12 +31,13 @@ const storage = multer.diskStorage({
 // 创建 multer 对象
 const upload = multer({ storage: storage });
 /* POST upload listing. */
-router.post('/houst-img', upload.single('file'), function(req, res, next) {
-    const file = req.file;
-    console.log('文件类型：%s', file.mimetype);
-    console.log('原始文件名：%s', file.originalname);
-    console.log('文件大小：%s', file.size);
-    console.log('文件保存路径：%s', file.path);
+router.post('/houst-img', upload.array('file', 9), function(req, res, next) {
+    const files = req.files;
+    console.log(files)
+    // console.log('文件类型：%s', file.mimetype);
+    // console.log('原始文件名：%s', file.originalname);
+    // console.log('文件大小：%s', file.size);
+    // console.log('文件保存路径：%s', file.path);
     // 接收文件成功后返回数据给前端
     res.json({res_code: '0'});
 });
