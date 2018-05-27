@@ -33,7 +33,7 @@ const upload = multer({ storage: storage });
 /* POST upload listing. */
 router.post('/houst-img', upload.array('file', 9), function(req, res, next) {
     const files = req.files;
-    console.log(files)
+    console.log(files);
     // console.log('文件类型：%s', file.mimetype);
     // console.log('原始文件名：%s', file.originalname);
     // console.log('文件大小：%s', file.size);
