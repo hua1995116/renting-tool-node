@@ -33,6 +33,9 @@ const upload = multer({ storage: storage });
 
 /* POST upload listing. */
 router.post('/houst-img', upload.single('file'), function(req, res, next) {
+    // console.log(req);
+    const {openid, houseId} = req.body;
+    console.log(openid, houseId);
     const file = req.file;
     console.log('文件类型：%s', file.mimetype);
     console.log('原始文件名：%s', file.originalname);
