@@ -4,11 +4,13 @@ const imglist = ImgList.sync({
     force: false
 })
 
-function addImg(openid, houseId, imglink) {
+function addImg(openid, houseId, imglink, mimetype, size) {
     return ImgList.create({
         openid,
         houseId,
-        imglink
+        imglink,
+        mimetype,
+        size
     })
 }
 

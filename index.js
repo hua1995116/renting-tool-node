@@ -2,7 +2,7 @@ const express = require('express');
 const app = express()
 const router = express.Router();
 const house = require('./router/house'),
-      upload = require('./router/upload'),
+      imglist = require('./router/imglist'),
       user = require('./router/user');
 
 // 允许跨域访问
@@ -20,7 +20,7 @@ router.get('/', function (req, res, next) {
 }); 
 app.use(router);
 app.use('/house', house);
-app.use('/upload', upload);
+app.use('/upload', imglist);
 app.use('/user', user);
 
 app.use(express.static('./'));

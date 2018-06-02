@@ -9,6 +9,12 @@ const ImgList = sequelize.define('imglist', {
     },
     imglink: {
       type: Sequelize.STRING
+    },
+    mimetype: {
+      type: Sequelize.STRING
+    },
+    size: {
+      type: Sequelize.STRING
     }
   }, {
     freezeTableName: false
