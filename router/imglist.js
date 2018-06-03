@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const multer = require('multer');
 const qiniuUpload = require('../qiniu/upload');
-const {addImg} = require('../sql/controller/imglist');
+const {addImg, findImgList} = require('../sql/controller/imglist');
 
 // 创建文件夹
 const createFolder = function (folder) {
@@ -89,5 +89,25 @@ router.post('/houst-img', upload.single('file'), async (req, res, next) => {
     }
     
 });
+
+router.get('/house-img-list', async (req, res, next) => {
+    const {openid, houseId} = req.query;
+    const data = await findImgList(openid, houseId);
+    console.log(data);
+    const list = data.map(item => {
+        return item.dataValues.imglink;
+    });
+    if(list) {
+        res.json({
+            code: 0,
+            data: list
+        });
+    } else {
+        res.json({
+            code: 0,
+            data: []
+        });
+    } 
+})
 
 module.exports = router;

@@ -14,6 +14,16 @@ function addImg(openid, houseId, imglink, mimetype, size) {
     })
 }
 
+function findImgList(openid, houseId) {
+    return ImgList.findAll({
+        where: {
+            openid,
+            houseId
+        }
+    })
+}
+
 module.exports = {
-    addImg
+    addImg,
+    findImgList
 }
