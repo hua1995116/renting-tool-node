@@ -6,7 +6,7 @@ config = {
         // 用户名
         username: 'root',
         // 口令
-        password: 'hyf510',
+        password: 'hyf',
         // 主机名
         host: 'localhost',
         // 端口号，MySQL默认3306
