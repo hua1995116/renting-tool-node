@@ -21,6 +21,15 @@ const House = sequelize.define('house', {
     },
     houseId: {
       type: Sequelize.STRING
+    },
+    address: {
+      type: Sequelize.STRING
+    },
+    latitude: {
+      type: Sequelize.STRING
+    },
+    longitude: {
+      type: Sequelize.STRING
     }
   }, {
     freezeTableName: false

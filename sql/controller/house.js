@@ -8,7 +8,7 @@ const house = House.sync({
     force: false
 });
 
-function addHouse(openid, location, iphone, date, type, image) {
+function addHouse(openid, location, iphone, date, type, image, address, latitude, longitude) {
     return House.create({
         openid,
         location,
@@ -16,6 +16,9 @@ function addHouse(openid, location, iphone, date, type, image) {
         date,
         type,
         image,
+        address,
+        latitude,
+        longitude,
         houseId: uuidv4()
     });
 };

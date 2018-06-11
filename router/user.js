@@ -23,6 +23,7 @@ router.get('/getId', (req, res) => {
             jsBody.status = 100;
             jsBody.msg = '操作成功';
             const openid = jsBody.openid;
+            console.log('openid------' + openid);
             res.json({
                 code: 200,
                 openid,
@@ -33,6 +34,7 @@ router.get('/getId', (req, res) => {
 
 router.get('/login', async (req, res) => {
     const param = req.query;
+    console.log(param);
     const {
         openid,
         nickName,
@@ -55,6 +57,10 @@ router.get('/login', async (req, res) => {
         if (!result) {
             const user = await addUser(openid, nickName, gender, avatarUrl, province, city, country);
             console.log(user);
+            res.json({
+                code: 200,
+                msg: '注册成功',
+            })
         } else {
             res.json({
                 code: 201,
